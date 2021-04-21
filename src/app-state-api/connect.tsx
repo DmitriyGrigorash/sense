@@ -1,9 +1,13 @@
 import React, { ReactElement, useContext } from "react";
 
 import { StoreContext } from "../index";
+import { ActionType } from "./state-api-types";
 
 
-const connect = (mapStateToProps: null | ((state: object, stateOwnProps: object) => {}), mapDispatchToProps: null | ((dispatch: Function, dispatchOwnProps?: object) => {}), Component: React.ComponentType) => {
+const connect = (
+  mapStateToProps: null | ((state: object, stateOwnProps: object) => {}),
+  mapDispatchToProps: null | ((dispatch: (action: ActionType) => void, dispatchOwnProps?: object
+  ) => {}), Component: React.ComponentType) => {
 
   return function (props: any): ReactElement {
     const [, setReload] = React.useState<number>(0);
@@ -17,7 +21,7 @@ const connect = (mapStateToProps: null | ((state: object, stateOwnProps: object)
     };
 
     const mdp = mapDispatchToProps ? mapDispatchToProps(dispatch, s) : {};
-    const msp = mapStateToProps ? mapStateToProps(s, props) : {};
+    const msp = mapStateToProps ? mapStateToProps(s, props) : s;
 
     const state = {...mdp, ...msp};
 
