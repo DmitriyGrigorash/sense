@@ -28,7 +28,6 @@ function App(props: any) {
   );
 }
 const mapDispatchToProps = (dispatch: any) => {
-
   return {
     updateData: () => dispatch({type: 'DATA', payload: 'field_updated'}),
     updateCount: (count: number) => dispatch({type: 'COUNT', payload: count}),
